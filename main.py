@@ -89,7 +89,7 @@ def gameLoop():
 
     while not gameExit:
 
-        while gameOver == True:
+        while gameOver:
             gameDisplay.fill(black)
 
             losingPlayer = ""
@@ -239,7 +239,8 @@ def gameLoop():
 
         # **********WHEN SOMEONE ATTACKS OR GUARDS********** #
         if collision(player1.getSprite(), player2.getSprite()):
-            if player1.getAtking() and not player2.getDamaged():
+            #if player1.getAtking() and not player2.getDamaged():
+            if player1.getAtking():
                 # player2 recoils
                 if player1.getSprite().getX() < player2.getSprite().getX():
                     player2.getSprite().moveHorizontally(player1.getSprite().getX()+player1.getSprite().getWidth()-player2.getSprite().getX()+10)
@@ -248,7 +249,8 @@ def gameLoop():
                 if not player2.getGuarding() and not player2.getDamaged():
                     player2.setHealth(player2.getHealth()-1)  # player2 loses HP
                     player2.setDamaged(True)
-            if player2.getAtking() and not player1.getDamaged():
+            #if player2.getAtking() and not player1.getDamaged():
+            if player2.getAtking():
                 # player1 recoils
                 if player1.getSprite().getX() < player2.getSprite().getX():
                     player1.getSprite().moveHorizontally( -(player1.getSprite().getX()+player1.getSprite().getWidth()-player2.getSprite().getX())-10 )
